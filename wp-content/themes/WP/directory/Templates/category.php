@@ -9,7 +9,7 @@
 				<header class="entry-header">
 		
 					<h1 class="entry-title">
-						{__ 'Category Archives:'} <span>{$category->title}</span>
+						{__ 'Arquivos da categoria:'} <span>{$category->title}</span>
 					</h1>
 					
 				</header>

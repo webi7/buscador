@@ -10,9 +10,9 @@
 <div class="closeable">
 	<div class="open-button item {if $defaultState == 'opened'}comments-opened{else}comments-closed{/if}">
 		{if $defaultState == 'opened'}
-			{__ "Close Comments"}
+			{__ "Fechar comentários"}
 		{else}
-			{__ "Show Comments"}
+			{__ "Mostrar comentários"}
 		{/if}
 	</div>
 {/if}
@@ -53,14 +53,14 @@
 							<span class="author vcard"><cite class="fn">{!$comment->author->nameWithLink}</cite></span><span class="eh">&nbsp;&nbsp;|&nbsp;&nbsp;</span><span class="date"><a href="{$comment->url}" class="comment-date"><time pubdate datetime="{$comment->date|date:'c'}">{$comment->date|date:$site->dateFormat} {_x 'at', 'comment publish time'} {$comment->date|date:$site->timeFormat}</time></a></span>
 
 							<div class="reply">
-								{capture $replyTitle} {!__ 'Reply <span>&darr;</span>'} {/capture}
+								{capture $replyTitle} {!__ 'Responder <span>&darr;</span>'} {/capture}
 								{commentReplyLink $replyTitle, $comment->args, $comment->depth, $comment->id}
 							</div>
 							{editCommentLink $comment->id}
 						</div>
 
 						{if !$comment->approved}
-							<em class="comment-awaiting-moderation">{__ 'Your Comment is awaiting moderation.'}</em><br>
+							<em class="comment-awaiting-moderation">{__ 'Seu comentário está aguardando moderação.'}</em><br>
 						{/if}
 						{!$comment->content}
 					</div>
@@ -74,18 +74,18 @@
 
 {elseif !$post->hasOpenComments && $post->type != 'page' && $post->hasSupportFor('comments')}
 
-	<p class="nocomments">{__ 'Comments are closed.'}</p>
+	<p class="nocomments">{__ 'Comentários fechados.'}</p>
 
 {/if}
 
 {* translations for parameters *}
 
 {capture $reviewNoun}{_x 'Comment', 'noun'}{/capture}
-{capture $reviewLoggedIn}{!__ 'You must be <a href="%s">logged in</a> to post a comment.'|printf: wp_login_url(apply_filters('the_permalink', get_permalink()))}{/capture}
-{capture $reviewLeave}{__ 'Leave a Comment'}{/capture}
-{capture $reviewReplyTo}{__ 'Leave a Comment to %s'}{/capture}
-{capture $reviewCancel}{__ 'Cancel Comment'}{/capture}
-{capture $reviewPost}{__ 'Post Comment'}{/capture}
+{capture $reviewLoggedIn}{!__ 'Você tem que estár <a href="%s">logado</a> para comentar.'|printf: wp_login_url(apply_filters('the_permalink', get_permalink()))}{/capture}
+{capture $reviewLeave}{__ 'Deixe um comentário'}{/capture}
+{capture $reviewReplyTo}{__ 'Deixe um comentário para %s'}{/capture}
+{capture $reviewCancel}{__ 'Cancelar comentário'}{/capture}
+{capture $reviewPost}{__ 'Adicionar comentário'}{/capture}
 
 {commentForm
 	comment_field => '<p class="comment-form-comment"><label for="comment">' . $reviewNoun . '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>',
@@ -97,7 +97,7 @@
 }
 
 {else}
-	<p class="nopassword">{__ 'This post is password protected. Enter the password to view any comments.'}</p>
+	<p class="nopassword">{__ 'Este post é protegido por senha. Digite a senha para ver os comentários.'}</p>
 {/if}
 </div><!-- #comments -->
 

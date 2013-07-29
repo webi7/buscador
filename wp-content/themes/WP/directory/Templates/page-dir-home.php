@@ -11,7 +11,7 @@
 	<header class="entry-header">
 		
 		<h1 class="entry-title">
-			<a href="{$post->permalink}" title="{__ 'Permalink to'} {$post->title}" rel="bookmark">{$post->title}</a>
+			<a href="{$post->permalink}" title="{__ 'Link permanente para'} {$post->title}" rel="bookmark">{$post->title}</a>
 		</h1>
 
 	</header>

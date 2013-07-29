@@ -9,7 +9,7 @@
 				<header class="entry-header">
 		
 					<h1 class="entry-title">
-						 {__ 'Author Archives:'}
+						 {__ 'Arquivos do autor:'}
 		                <span class="vcard">
 		                    <a class="url fn n" href="{$author->postsUrl}" title="{$author->name}" rel="me">{$author->name}</a>
 		                </span>

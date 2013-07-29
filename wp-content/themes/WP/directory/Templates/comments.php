@@ -10,9 +10,9 @@
 <div class="closeable">
 	<div class="open-button {if $defaultState == 'opened'}comments-opened{else}comments-closed{/if}">
 		{if $defaultState == 'opened'}
-			{__ "Close Comments"}
+			{__ "Comentários fechados"}
 		{else}
-			{__ "Show Comments"}
+			{__ "Mostrar comentários"}
 		{/if}
 	</div>
 {/ifset}
@@ -54,14 +54,14 @@
 								<span class="author vcard"><cite class="fn">{!$comment->author->nameWithLink}</cite></span><span class="eh">&nbsp;&nbsp;|&nbsp;&nbsp;</span><span class="date"><a href="{$comment->url}" class="comment-date"><time pubdate datetime="{$comment->date|date:'c'}">{$comment->date|date:$site->dateFormat} {_x 'at', 'comment publish time'} {$comment->date|date:$site->timeFormat}</time></a></span>
 								
 								<div class="reply">
-									{capture $replyTitle} {!__ 'Reply <span>&darr;</span>'} {/capture}
+									{capture $replyTitle} {!__ 'Responder <span>&darr;</span>'} {/capture}
 									{commentReplyLink $replyTitle, $comment->args, $comment->depth, $comment->id}
 								</div>
 								{editCommentLink $comment->id}
 							</div>
 						
 							{if !$comment->approved}
-								<em class="comment-awaiting-moderation">{__ 'Your comment is awaiting moderation.'}</em><br>
+								<em class="comment-awaiting-moderation">{__ 'Seu comentário está aguardando moderação.'}</em><br>
 							{/if}
 							{!$comment->content}
 						</div>
@@ -75,14 +75,14 @@
 
 	{elseif !$post->hasOpenComments && $post->type != 'page' && $post->hasSupportFor('comments')}
 
-		<p class="nocomments">{__ 'Comments are closed.'}</p>
+		<p class="nocomments">{__ 'Comentários fechados.'}</p>
 
 	{/if}
 
 	{commentForm}
 
 {else}
-	<p class="nopassword">{__ 'This post is password protected. Enter the password to view any comments.'}</p>
+	<p class="nopassword">{__ 'Este post é protegido por senha. Digite a senha para ver os comentários.'}</p>
 {/if}
 </div><!-- #comments -->
 

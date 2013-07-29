@@ -125,7 +125,7 @@
             <div id="ait-dir-register-notifications" class="{if $_GET['dir-register-status'] == '3'}error{else}info{/if}">
                 {if $_GET['dir-register-status'] == '3'}
                 <div class="message defaultContentWidth">
-                {__ "You canceled payment. Your account was registered but without option to add items. Upgrade your account in admin to add items."}
+                {__ "Você cancelou o pagamento. Sua conta foi registrada, mas sem opção de adicionar itens. Melhore a sua conta no admin para adicionar itens."}
                 <div class="close"></div>
                 </div>
                 {/if}

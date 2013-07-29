@@ -35,13 +35,13 @@
 					<h1 class="entry-title">
 						<span>
 						{if $archive->isDay}
-							{__ 'Daily Archives:'} <span>{$posts[0]->date|date:$site->dateFormat}</span>
+							{__ 'Arquivo diário:'} <span>{$posts[0]->date|date:$site->dateFormat}</span>
 						{elseif $archive->isMonth}
-							{__ 'Monthly Archives:'} <span>{$posts[0]->date|date:'F Y'}</span>
+							{__ 'Arquivos mensais:'} <span>{$posts[0]->date|date:'F Y'}</span>
 						{elseif $archive->isYear}
-							{__ 'Yearly Archives:'} <span>{$posts[0]->date|date:'Y'}</span>
+							{__ 'Arquivos anuais:'} <span>{$posts[0]->date|date:'Y'}</span>
 						{else}
-							{__ 'Blog Archives'}
+							{__ 'Arquivos do Blog'}
 						{/if}
 						</span>
 					</h1>
