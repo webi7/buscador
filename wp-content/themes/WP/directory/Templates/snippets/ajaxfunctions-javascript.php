@@ -387,9 +387,9 @@ function generateContent(data) {
 	contentDiv.find('.ajax-content').remove();
 	var title;
 	if(length == 0){
-		title = $('<header class="entry-header"><h1 class="entry-title"><span>{__ 'No result found'}</span></h1></header>');
+		title = $('<header class="entry-header"><h1 class="entry-title"><span>{__ 'Nenhum resultado encontrado'}</span></h1></header>');
 	} else {
-		title = $('<header class="entry-header"><h1 class="entry-title"><span>{__ 'Search result'}</span></h1></header>');
+		title = $('<header class="entry-header"><h1 class="entry-title"><span>{__ 'Resultado da busca'}</span></h1></header>');
 	}
 	
 	var html;

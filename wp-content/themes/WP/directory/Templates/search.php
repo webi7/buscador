@@ -5,7 +5,7 @@
 {if $posts}
 	
 	<header class="entry-header">
-		<h1 class="entry-title"><span>{__ 'Search Results for:'} {$site->searchQuery}</span></h1>
+		<h1 class="entry-title"><span>{__ 'Resultados de pesquisa para:'} {$site->searchQuery}</span></h1>
 	</header>
 
 	{if $type}

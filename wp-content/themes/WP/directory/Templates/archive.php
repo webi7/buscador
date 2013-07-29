@@ -11,7 +11,7 @@
 				<header class="entry-header">
 
 					<h1 class="entry-title">
-						<span>{__ 'Search result'}</span>
+						<span>{__ 'Resultado da busca'}</span>
 					</h1>
 
 				</header>

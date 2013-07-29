@@ -186,7 +186,7 @@
                     </div>
 
                     <nav id="access" role="navigation">
-                        <h3 class="assistive-text">{__ 'Main menu'}</h3>
+                        <h3 class="assistive-text">{__ 'Menu principal'}</h3>
                         {menu 'theme_location' => 'primary-menu', 'fallback_cb' => 'default_menu', 'container' => 'nav', 'container_class' => 'mainmenu', 'menu_class' => 'menu' }
                     </nav><!-- #accs -->
                 </div>
@@ -214,7 +214,7 @@
                         <div id="dir-search-inputs">
                             <div id="dir-holder">
                             	<div class="dir-holder-wrap">
-                                <input type="text" name="s" id="dir-searchinput-text" placeholder="{__ 'Search keyword...'}" class="dir-searchinput"{ifset $isDirSearch} value="{$site->searchQuery}"{/ifset}>
+                                <input type="text" name="s" id="dir-searchinput-text" placeholder="{__ 'Buscar por palavra...'}" class="dir-searchinput"{ifset $isDirSearch} value="{$site->searchQuery}"{/ifset}>
                                 
                                 {ifset $themeOptions->search->showAdvancedSearch}
                                 <div id="dir-searchinput-settings" class="dir-searchinput-settings">
@@ -222,7 +222,7 @@
                                     <div id="dir-search-advanced" style="display: none;">
                                         {ifset $themeOptions->search->advancedSearchText}<div class="text">{$themeOptions->search->advancedSearchText}</div>{/ifset}
                                         <div class="text-geo-radius clear">
-                                            <div class="geo-radius">{__ 'Radius:'}</div>
+                                            <div class="geo-radius">{__ 'Alcance:'}</div>
                                             <div class="metric">km</div>
                                             <input type="text" name="geo-radius" id="dir-searchinput-geo-radius" value="{ifset $isGeolocation}{$geolocationRadius}{else}{ifset $themeOptions->search->advancedSearchDefaultValue}{$themeOptions->search->advancedSearchDefaultValue}{else}100{/ifset}{/ifset}" data-default-value="{ifset $themeOptions->search->advancedSearchDefaultValue}{$themeOptions->search->advancedSearchDefaultValue}{else}100{/ifset}">
                                         </div>
@@ -239,10 +239,10 @@
                                 <input type="hidden" name="geo-lng" id="dir-searchinput-geo-lng" value="0">
                                 {/ifset}
                                 
-                                <input type="text" id="dir-searchinput-category" placeholder="{__ 'All categories'}">
+                                <input type="text" id="dir-searchinput-category" placeholder="{__ 'Categorias'}">
                                 <input type="text" name="categories" id="dir-searchinput-category-id" value="0" style="display: none;">
                                 
-                                <input type="text" id="dir-searchinput-location" placeholder="{__ 'All locations'}">
+                                <input type="text" id="dir-searchinput-location" placeholder="{__ 'Localizações'}">
                                 <input type="text" name="locations" id="dir-searchinput-location-id" value="0" style="display: none;">
 
                                 <div class="reset-ajax"></div>
@@ -253,7 +253,7 @@
                         
                         {/ifset}
                         <div id="dir-search-button">
-                            <input type="submit" value="{__ 'Search'}" class="dir-searchsubmit">
+                            <input type="submit" value="{__ 'Buscar'}" class="dir-searchsubmit">
                         </div>
                         <input type="hidden" name="dir-search" value="yes" />
                         <input type="hidden" name="post_type" value="ait-dir-item">
