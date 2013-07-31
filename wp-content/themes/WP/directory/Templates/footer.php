@@ -15,7 +15,7 @@
 					<div id="footer-text">
 						{!$themeOptions->general->footer_text}
 					</div>
-					{menu 'theme_location' => 'footer-menu', 'fallback_cb' => 'default_footer_menu', 'container' => 'nav', 'container_class' => 'footer-menu', 'menu_class' => 'menu', 'depth' => 1 }
+					<!-- {menu 'theme_location' => 'footer-menu', 'fallback_cb' => 'default_footer_menu', 'container' => 'nav', 'container_class' => 'footer-menu', 'menu_class' => 'menu', 'depth' => 1 } -->
 				</div>
 			</div>
 

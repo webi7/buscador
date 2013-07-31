@@ -1,5 +1,5 @@
 <?php
-require '../../../../../../wp-load.php';
+require '../../../../../../../wp-load.php';
 
 $data = NNeon::decode(file_get_contents(dirname(__FILE__) . "/{$_REQUEST['plugin']}/config.neon", true));
 

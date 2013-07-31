@@ -75,10 +75,10 @@
 		{if $options['address'] || $options['gpsLatitude'] || $options['telephone'] || $options['email'] || $options['web']}
 		<dl class="item-address">
 			
-			<dt class="title"><h4>{__ 'Our address'}</h4></dt> 
+			<dt class="title"><h4>{__ 'Nosso Endereço'}</h4></dt> 
 			
 			{if $options['address']}
-		    <dt class="address">{__ 'Address:'}</dt>
+		    <dt class="address">{__ 'Endereço:'}</dt>
 		    <dd class="data">{!$options['address']}</dd>
 		    {/if}
 		     
@@ -88,17 +88,17 @@
 		    {/if}
 		    
 		    {if $options['telephone']}
-		    <dt class="phone">{__ 'Telephone:'}</dt>
+		    <dt class="phone">{__ 'Telefone:'}</dt>
 		    <dd class="data">{$options['telephone']}</dd>
 		    {/if}
 		    
 		    {if $options['email']}         
-		    <dt class="email">{__ 'Email:'} </dt>
+		    <dt class="email">{__ 'E-mail:'} </dt>
 		    <dd class="data"><a href="mailto:{!$options['email']}">{!$options['email']}</a></dd>
 		    {/if}
 
 		    {if $options['web']} 
-		    <dt class="web">{__ 'Web:'} </dt>
+		    <dt class="web">{__ 'Site:'} </dt>
 		    <dd class="data"><a href="{!$options['web']}">{!$options['web']}</a></dd>
 		    {/if}
 		    
@@ -108,40 +108,40 @@
 		{if $options['hoursMonday'] || $options['hoursTuesday'] || $options['hoursWednesday'] || $options['hoursThursday'] || $options['hoursFriday'] || $options['hoursSaturday'] || $options['hoursSunday']}     
 		<dl class="item-hours">
 			
-			<dt class="title"><h4>{__ 'Opening Hours'}</h4></dt> 
+			<dt class="title"><h4>{__ 'Horário de funcionamento'}</h4></dt> 
 			
 			{if $options['hoursMonday']}
-		    <dt class="day">{__ 'Monday:'}</dt>
+		    <dt class="day">{__ 'Segunda:'}</dt>
 		    <dd class="data">{!$options['hoursMonday']}</dd>
 		    {/if}
 		    
 		    {if $options['hoursTuesday']}
-		    <dt class="day">{__ 'Tuesday:'}</dt>
+		    <dt class="day">{__ 'Terça:'}</dt>
 		    <dd class="data">{!$options['hoursTuesday']}</dd>
 		    {/if}
 		    
 		    {if $options['hoursWednesday']}
-		    <dt class="day">{__ 'Wednesday:'}</dt>
+		    <dt class="day">{__ 'Quarta:'}</dt>
 		    <dd class="data">{!$options['hoursWednesday']}</dd>
 		    {/if}
 		    
 		    {if $options['hoursThursday']}
-		    <dt class="day">{__ 'Thursday:'}</dt>
+		    <dt class="day">{__ 'Quinta:'}</dt>
 		    <dd class="data">{!$options['hoursThursday']}</dd>
 		    {/if}
 		    
 		    {if $options['hoursFriday']}
-		    <dt class="day">{__ 'Friday:'}</dt>
+		    <dt class="day">{__ 'Sexta:'}</dt>
 		    <dd class="data">{!$options['hoursFriday']}</dd>
 		    {/if}
 
 		    {if $options['hoursSaturday']}
-		    <dt class="day">{__ 'Saturday:'}</dt>
+		    <dt class="day">{__ 'Sábado:'}</dt>
 		    <dd class="data">{!$options['hoursSaturday']}</dd>
 		    {/if}
 		    
 		    {if $options['hoursSunday']}
-		    <dt class="day">{__ 'Sunday:'}</dt>
+		    <dt class="day">{__ 'Domingo:'}</dt>
 		    <dd class="data">{!$options['hoursSunday']}</dd>
 		    {/if}
 		    
@@ -154,7 +154,7 @@
 	</div>
 
 	<hr>
-	
+
 	{if $options['alternativeContent']}
 	<div class="item-alternative-content">
 		{!do_shortcode($options['alternativeContent'])}

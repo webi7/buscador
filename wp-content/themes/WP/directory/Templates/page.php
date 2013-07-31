@@ -1,6 +1,18 @@
+
 {extends $layout}
 
 {block content}
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/pt_BR/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+
 <article id="post-{$post->id}" class="{$post->htmlClasses}">
 
 	<header class="entry-header">
@@ -41,8 +53,6 @@
 	</div>
 
 </article><!-- /#post-{$post->id} -->
-
-{include comments.php, closeable => $themeOptions->general->closeComments, defaultState => $themeOptions->general->defaultPosition}
 
 {ifset $themeOptions->advertising->showBox4}
 <div id="advertising-box-4" class="advertising-box">
