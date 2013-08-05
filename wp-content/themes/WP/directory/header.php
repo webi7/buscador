@@ -1,5 +1,4 @@
 <?php
-
 /**
  * AIT WordPress Theme
  *
@@ -12,6 +11,7 @@ global $aitThemeOptions, $latteParams, $wp_query, $registerErrors, $registerMess
 if(isset($registerErrors)){
 	$latteParams['registerErrors'] = $registerErrors->get_error_message();
 }
+
 // register form info
 if(isset($registerMessages)){
 	$latteParams['registerMessages'] = $registerMessages;
@@ -20,17 +20,24 @@ if(isset($registerMessages)){
 $mapCategory = 0;
 $mapLocation = 0;
 $mapSearch = $wp_query->query_vars['s'];
+
 // parse tax query - only one category and location
 if(isset($wp_query->tax_query)){
+
 	$taxQueries = $wp_query->tax_query->queries;
+
 	foreach ($taxQueries as $tax) {
+
 		if($tax['field'] == 'id'){
+
 			if($tax['taxonomy'] == 'ait-dir-item-category'){
 				$mapCategory = (isset($tax['terms'][0])) ? $tax['terms'][0] : 0;
 			} elseif ($tax['taxonomy'] == 'ait-dir-item-location') {
 				$mapLocation = (isset($tax['terms'][0])) ? $tax['terms'][0] : 0;
 			}
+
 		} elseif ($tax['field'] == 'slug') {
+
 			if($tax['taxonomy'] == 'ait-dir-item-category'){
 				$mapCategory = (isset($tax['terms'][0])) ? get_term_by( 'slug', $tax['terms'][0], 'ait-dir-item-category' )->term_id : 0;
 			} elseif ($tax['taxonomy'] == 'ait-dir-item-location') {
@@ -38,7 +45,9 @@ if(isset($wp_query->tax_query)){
 			}
 		}
 	}
+
 }
+
 $latteParams['mapCategory'] = $mapCategory;
 $latteParams['mapLocation'] = $mapLocation;
 $latteParams['mapSearch'] = $mapSearch;
@@ -48,42 +57,56 @@ $categories = get_terms('ait-dir-item-category', array(
 	'hide_empty'		=> false,
 	'orderby'			=> 'name'
 ));
+
 $latteParams['categories'] = $categories;
 $locations = get_terms('ait-dir-item-location', array(
 	'hide_empty'		=> false,
 	'orderby'			=> 'name'
 ));
+
 $latteParams['locations'] = $locations;
 
 if(isset($_GET['dir-search'])){
+
 	$latteParams['searchTerm'] = $wp_query->query_vars['s'];
 	
 	$latteParams['isGeolocation'] = (isset($_GET['geo'])) ? true : null;
 	$latteParams['geolocationRadius'] = (isset($_GET['geo-radius'])) ? $_GET['geo-radius'] : 100;
 	$latteParams['geolocationCircle'] = (isset($aitThemeOptions->search->showAdvancedSearchRadius)) ? true : null;
+
 	if(isset($aitThemeOptions->search->searchShowMap)){
+
 		// map
 		$latteParams['headerType'] = 'map';
 		$radius = array();
+
 		if(isset($_GET['geo'])){
+
 			$radius[] = $_GET['geo-radius'];
 			$radius[] = $_GET['geo-lat'];
 			$radius[] = $_GET['geo-lng'];
 		}
+
 		$latteParams['items'] = getItems($_GET['categories'],$_GET['locations'],$wp_query->query_vars['s'],$radius);
+
 	} else {
 		$latteParams['headerType'] = 'none';
 	}
+
 } else if(isset($latteParams['isDirTaxonomy']) || isset($latteParams['isDirSingle'])){
+
 	// map
 	$latteParams['headerType'] = 'map';
 	$latteParams['isGeolocation'] = (isset($aitThemeOptions->directoryMap->enableGeolocation)) ? true : null;
 	//$latteParams['geolocationOnlyInRadius'] = (isset($aitThemeOptions->directoryMap->geolocationOnlyInRadius)) ? true : null;
 	$latteParams['geolocationRadius'] = (isset($aitThemeOptions->directoryMap->geolocationRadius)) ? $aitThemeOptions->directoryMap->geolocationRadius : 100;
 	$latteParams['geolocationCircle'] = (isset($aitThemeOptions->directoryMap->geolocationCircle)) ? true : null;
+
 } else {
+
 	// LOCAL
 	if(isset($latteParams['post']) && isset($latteParams['post']->options('header')->overrideGlobal)){
+
 		$latteParams['headerType'] = $latteParams['post']->options('header')->headerType;
 		switch ($latteParams['post']->options('header')->headerType) {
 			case 'map':

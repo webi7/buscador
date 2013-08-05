@@ -1,4 +1,5 @@
 <?php
+
 $latteParams['post'] = WpLatte::createPostEntity(
 	$GLOBALS['wp_query']->post,
 	array(

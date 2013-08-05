@@ -1,5 +1,4 @@
 <?php
-
 /*
  * AIT WordPress Theme
  *
@@ -29,12 +28,12 @@ require dirname(__FILE__) . '/AIT/ait-bootstrap.php';
 
 $pageOptions = array(
 	'header' => new WPAlchemy_MetaBox(array(
-		'id' => '_ait_header_options',
-		'title' => __('Header', 'ait-admin'),
-		'types' => array('page','post'),
-		'context' => 'normal',
+		'id'       => '_ait_header_options',
+		'title'    => __('Header', 'ait-admin'),
+		'types'    => array('page','post'),
+		'context'  => 'normal',
 		'priority' => 'core',
-		'config' => dirname(__FILE__) . '/conf/page-header.neon'
+		'config'   => dirname(__FILE__) . '/conf/page-header.neon'
 	))
 );
 
@@ -43,19 +42,19 @@ $pageOptions = array(
 // Theme's scripts and styles
 // --------------------------------------------------
 
-function aitAdminEnqueueScriptsAndStyles()
-{
+function aitAdminEnqueueScriptsAndStyles() {
+
 	aitAddScripts(array(
 		'ait-googlemaps-api' => array('file' => 'http://maps.google.com/maps/api/js?sensor=false&amp;language=en', 'deps' => array('jquery')),
 		'ait-jquery-gmap3'   => array('file' => THEME_JS_URL . '/libs/gmap3.min.js', 'deps' => array('jquery', 'ait-googlemaps-api')),
 	));
 }
+
 add_action('admin_enqueue_scripts', 'aitAdminEnqueueScriptsAndStyles');
 
+function aitEnqueueScriptsAndStyles() {
 
-function aitEnqueueScriptsAndStyles()
-{
-		// just shortcuts
+  // just shortcuts
 	$s = THEME_CSS_URL;
 	$j = THEME_JS_URL;
 

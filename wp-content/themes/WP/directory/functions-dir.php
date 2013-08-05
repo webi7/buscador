@@ -7,8 +7,8 @@ require_once dirname(__FILE__) . '/rating.php';
 /**
  * Directory Find in radius function
  **/
-function isPointInRadius($radiusInKm, $cenLat, $cenLng, $lat, $lng)
-{
+function isPointInRadius($radiusInKm, $cenLat, $cenLng, $lat, $lng) {
+
 	$radiusInKm = intval($radiusInKm);
 	$cenLat = floatval($cenLat);
 	$cenLng = floatval($cenLng);
@@ -22,8 +22,8 @@ function isPointInRadius($radiusInKm, $cenLat, $cenLng, $lat, $lng)
 	}
 }
 
-function parseMapOptions($adminOptions)
-{
+function parseMapOptions($adminOptions) {
+
 	$options = array();
 
 	$options['draggable'] = (isset($adminOptions->draggable)) ? "true" : "false";
@@ -50,6 +50,7 @@ function custom_pre_get_posts($query) {
 			$taxquery['relation'] = 'AND';
 
 			if(isset($_GET['categories']) && !empty($_GET['categories'])){
+
 				$taxquery[] = array(
 					'taxonomy' => 'ait-dir-item-category',
 					'field' => 'id',
@@ -57,6 +58,7 @@ function custom_pre_get_posts($query) {
 					'include_children' => true
 				);
 			}
+
 			if(isset($_GET['locations']) && !empty($_GET['locations'])){
 				$taxquery[] = array(
 					'taxonomy' => 'ait-dir-item-location',
@@ -65,6 +67,7 @@ function custom_pre_get_posts($query) {
 					'include_children' => true
 				);
 			}
+
 			$query->set('tax_query',$taxquery);
 
 			$num = (isset($GLOBALS['aitThemeOptions']->search->searchItemsPerPage)) ? $GLOBALS['aitThemeOptions']->search->searchItemsPerPage : 10;
@@ -72,6 +75,7 @@ function custom_pre_get_posts($query) {
 
 			// filter only items by geolocation
 			if(isset($_GET['geo'])){
+
 				$category = $_GET['categories'];
 				$location = $_GET['locations'];
 				$params = array(
@@ -79,6 +83,7 @@ function custom_pre_get_posts($query) {
 					'nopaging'			=>	true,
 					'post_status'		=> 'publish'
 				);
+
 				$taxquery = array();
 				$taxquery['relation'] = 'AND';
 				if($category != 0){
@@ -127,12 +132,13 @@ function custom_pre_get_posts($query) {
 	}
 	return $query;
 }
-add_filter('pre_get_posts','custom_pre_get_posts');
 
+add_filter('pre_get_posts','custom_pre_get_posts');
 
 $aitCategoryMeta = array();
 
 function getCategoryMeta( $what, $categoryID ){
+
 	global $aitCategoryMeta, $wpdb;
 
 	// get cache = all values
@@ -202,8 +208,8 @@ function getCategoryMeta( $what, $categoryID ){
  * @param  int $id author id
  * @return string     class
  */
-function getItemPackageClass( $authorId )
-{
+function getItemPackageClass( $authorId ) {
+
 	$user = new WP_User( $authorId );
 	if(isset($user->roles[0])){
 		return $user->roles[0];
@@ -213,7 +219,8 @@ function getItemPackageClass( $authorId )
 }
 
 // Get manually excerpt or automatic excerpt for wp post
-function aitGetPostExcerpt($excerpt, $content){
+function aitGetPostExcerpt($excerpt, $content) {
+
 	$newExcerpt = '';
 	$trimExcerpt = trim($excerpt);
 	if(empty($trimExcerpt)){
@@ -974,6 +981,7 @@ if(isset($_GET['dir-register']) && ($_GET['dir-register'] == 'success') && isset
 		}
 	}
 }
+
 // delete token if user cancel payment
 if(isset($_GET['dir-register']) && isset($_GET['token']) && ($_GET['dir-register'] == 'cancel')){
 	global $wpdb;
@@ -982,8 +990,8 @@ if(isset($_GET['dir-register']) && isset($_GET['token']) && ($_GET['dir-register
 }
 
 // detailed user capabilities
-function itemDetailedCapabilities($data)
-{
+function itemDetailedCapabilities($data) {
+
 	global $aitThemeOptions, $wp_meta_boxes, $current_user;
 
 	$usrRoles = $current_user->roles;
@@ -1046,10 +1054,12 @@ function itemDetailedCapabilities($data)
 		}
 	}
 }
+
 add_action( 'add_meta_boxes', 'itemDetailedCapabilities');
+
 // detailed user capabilities
-function removeItemFeatures()
-{
+function removeItemFeatures() {
+
 	global $aitThemeOptions, $current_user;
 
 	$usrRoles = $current_user->roles;
@@ -1154,16 +1164,16 @@ function checkUserActivationTimes() {
 	}
 }
 
-function expireUser($user_id)
-{
+function expireUser($user_id) {
+
 	global $wpdb;
 	$wpdb->query($wpdb->prepare( "UPDATE $wpdb->posts SET post_status = 'expired' WHERE post_author = %d AND post_status = 'publish'", intval($user_id)) );
 	$user = get_userdata( $user_id );
 	$user->set_role('subscriber');
 }
 
-function getDaysLeft()
-{
+function getDaysLeft() {
+
 	global $wpdb, $current_user, $aitThemeOptions;
 
 	$data = $wpdb->get_row("SELECT meta_value FROM $wpdb->usermeta WHERE meta_key = 'dir_activation_time' AND user_id = ".$current_user->ID);
@@ -1186,54 +1196,69 @@ function getDaysLeft()
 	return $differenceInDays;
 }
 
-function removeMediaAdminButton($menu)
-{
+function removeMediaAdminButton($menu) {
+
 	global $current_user;
 	$usrRoles = $current_user->roles;
+
 	if(in_array('directory_1', $usrRoles) || in_array('directory_2', $usrRoles) || in_array('directory_3', $usrRoles) || in_array('directory_4', $usrRoles) || in_array('directory_5', $usrRoles)){
+
 		foreach ($menu as $key => $item) {
 			if($item[1] == 'upload_files'){
 				unset($menu[$key]);
 			}
 		}
 	}
+
 	return $menu;
 }
-add_filter("add_menu_classes","removeMediaAdminButton");
 
+add_filter("add_menu_classes","removeMediaAdminButton");
 
 
 add_filter('manage_users_columns', 'add_status_column');
 add_filter('manage_users_custom_column', 'manage_status_column', 10, 3);
 
 function add_status_column($columns) {
-	$columns['items'] = __('Items','ait');
-    $columns['activation_time'] = __('Activation time','ait');
-    $columns['transaction_id'] = __('Last PayPal transaction ID','ait');
- 	return $columns;
 
+  $columns['items'] = __('Items','ait');
+  $columns['activation_time'] = __('Activation time','ait');
+  $columns['transaction_id'] = __('Last PayPal transaction ID','ait');
+
+  return $columns;
 }
 
 function manage_status_column($empty='', $column_name, $id) {
-	if( $column_name == 'items' ) {
-		return getAuthorItemsCount($id);
+
+  if( $column_name == 'items' ) {
+    return getAuthorItemsCount($id);
+  }
+
+  if( $column_name == 'activation_time' ) {
+
+    $data = get_user_meta( $id, 'dir_activation_time', true );
+
+    if($data){
+
+      $dateFormat = get_option( 'date_format', 'm/d/Y' );
+      return date($dateFormat,$data['time']);
     }
-	if( $column_name == 'activation_time' ) {
-		$data = get_user_meta( $id, 'dir_activation_time', true );
-		if($data){
-			$dateFormat = get_option( 'date_format', 'm/d/Y' );
-			return date($dateFormat,$data['time']);
-		}
+
+  }
+
+  if( $column_name == 'transaction_id' ) {
+
+    $data = get_user_meta( $id, 'dir_paypal_transaction_id', true );
+
+    if($data){
+      return $data;
     }
-    if( $column_name == 'transaction_id' ) {
-		$data = get_user_meta( $id, 'dir_paypal_transaction_id', true );
-		if($data){
-			return $data;
-		}
-    }
+  }
+
 }
 
 function getAuthorItemsCount($id) {
+
 	global $wpdb;
 
 	$count = $wpdb->get_var( "SELECT COUNT(*) FROM $wpdb->posts WHERE post_type = 'ait-dir-item' AND post_status = 'publish' AND post_author = ".$id );

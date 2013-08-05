@@ -6,6 +6,7 @@
 global $aitThemeOptions;
 
 if(isset($aitThemeOptions->rating->enableRating)){
+
 	add_action('init', 'aitRatingCustomInit');
 	add_action('admin_head', 'aitRemoveAddRatingButton');
 	add_filter('manage_ait-rating_posts_columns', 'aitRatingChangeColumns');
@@ -18,6 +19,7 @@ if(isset($aitThemeOptions->rating->enableRating)){
 }
 
 function aitRatingCustomInit() {
+
 	$args = array( 
 		'public' => true,
 		'labels' => array(
@@ -36,6 +38,7 @@ function aitRatingCustomInit() {
 		'capability_type' => 'ait-rating',
 		'map_meta_cap' => true
 	);
+
 	register_post_type( 'ait-rating', $args );
 
 	// add capability
@@ -479,8 +482,8 @@ function getAitRatingElement($postId, $success = false) {
 	}
 }
 
-function aitCalculateMeanForPost($postId, $round = true)
-{
+function aitCalculateMeanForPost($postId, $round = true) {
+
 	$max = (isset($GLOBALS['aitThemeOptions']->rating->starsCount)) ? intval($GLOBALS['aitThemeOptions']->rating->starsCount) : 5;
 
 	// get all ratings for this post
@@ -495,18 +498,20 @@ function aitCalculateMeanForPost($postId, $round = true)
 			)
 		)
 	);
+
 	$ratings = new WP_Query($args);
 
 	if(count($ratings->posts) > 0) {
+
 		$sum = 0;
 		foreach ($ratings->posts as $rating) {
 			$sum += floatval(get_post_meta($rating->ID,'rating_mean',true));
 		}
 		$mean = ($round) ? round($sum / count($ratings->posts)) : $sum / count($ratings->posts);
 		return array( 'max' => $max, 'val' => $mean);
+
 	} else {
 		return false;
 	}
 		
 }
-
